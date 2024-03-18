@@ -1,3 +1,3 @@
 # 1주차 devnote
 
-test
+커밋 계정 수정
