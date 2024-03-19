@@ -1,4 +1,4 @@
-# 1. TypeScript
+# TypeScript
 
 ### 타입스크립트 사용 이유
 

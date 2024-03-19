@@ -1,6 +1,4 @@
-# 2. React
-
-## Thinking in React
+# Thinking in React
 
 우리가 애플리케이션을 만들기 위해 React를 사용한다. 애플리케이션의 설계를 잘하기 위해선 React가 어떻게 흘러가는지 알아야한다.
 
