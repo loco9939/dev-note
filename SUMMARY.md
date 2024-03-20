@@ -1,12 +1,12 @@
 ‌# Table of contents
 
-## GitBook
+## Devnote_loco9939
 
-- [Git Book 가이드](README.md)
-
-- [GitHub과 연동하기](/integration/integration-with-github.md)
-  - [PR 날리기](/integration/pull-request.md)
-
-## Devnote
-
-- [1주차](/week_1/first-devnote.md)
+- [1주차](/week_1)
+  - [개발환경세팅](/week_1/개발환경%20세팅.md)
+  - [TypeScript](/week_1/TypeScript.md)
+  - [React](/week_1/React/)
+    - [Thinking in React](/week_1//React/Thinking%20in%20React.md)
+    - [Overreact by dan abramov](/week_1//React/OverReact%20by%20Dan%20abramov.md)
+    - [Rendering in React](/week_1/React/Rendering%20in%20React.md)
+    - [createRoot](/week_1/React/creatRoot.md)
