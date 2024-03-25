@@ -11,3 +11,5 @@
     - [Rendering in React](/week_1/React/Rendering%20in%20React.md)
     - [createRoot](/week_1/React/creatRoot.md)
   - [Jest](/week_1/Jest.md)
+- [2주차](/week_2)
+  - [JSX](/week_2/JSX.md)
