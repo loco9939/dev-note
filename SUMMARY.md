@@ -13,3 +13,4 @@
   - [Jest](/week_1/Jest.md)
 - [2주차](/week_2)
   - [JSX](/week_2/JSX.md)
+  - [Reconciliation](/week_2/Reconciliation.md)
