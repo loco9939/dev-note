@@ -22,6 +22,63 @@ React로 UI를 구현하기 위해서는 5가지 단계를 거친다.
     - ProductCategoryRow
     - ProductRow
 
+#### ⭐️ 컴포넌트 쪼개기 Tip 
+
+React를 잘 사용하기 위해서는 React의 목적과 장점을 활용하여 사용하는 것이 중요하다.
+
+> 선언적 API를 활용할 수 있다는 점이 1번째 장점이고, 복잡한 UI를 만들기 위해 **간단한 컴포넌트**를 만들어서 조립하는 것이 2번째 장점이다.
+
+간단한 컴포넌트를 구현하기 위한 기준은 다음과 같다.
+
+<p style="color:red;font-weight:700">1. 컴포넌트는 복잡하면 안된다.</p>
+
+복잡한 UI를 단순한 컴포넌트로 조립해야하므로 컴포넌트 자체는 복잡하면 안된다.
+
+<p style="color:red;font-weight:700">2. SRP(단일책임원칙)을 따라야한다.</p>
+
+> 컴포넌트를 작성하고 있는데, HTML이나 JavaScript가 너무 커지고 있다면?...
+
+HTML을 쪼개거나 JavaScript 코드를 쪼개거나 최대한 단순하게 작성하면서 SOLID 원칙 중 첫번째 원칙인 **단일책임원칙**을 준수하며 작성해야한다.
+
+그리고 SRP를 위한 수단으로 자주 사용되는 방법은 **Extract Function(함수추출)** 이다.
+
+함수 내부에서 중복되는 코드를 함수로 빼내어 함수를 호출하는 방법으로 재구성한다.
+
+```js
+function printOwing(invoice) {
+  printBanner();
+  let outstanding = calculateOutstanding();
+
+  // print details
+  console.log(`name: ${invoice.customer}`)
+  console.log(`amount: ${outstanding}`)
+}
+```
+
+우선 코드를 길게 작성한 다음에 적절히 자를 수 있는 부분이 보인다면 함수로 추출한다.
+
+```js
+// Extract Function
+function printOwing(invoice) {
+  printBanner();
+  let outstanding  = calculateOutstanding();
+  printDetails(outstanding);
+
+  function printDetails(outstanding) {
+    console.log(`name: ${invoice.customer}`);
+    console.log(`amount: ${outstanding}`);
+  }
+}
+```
+
+<p style="color:red;font-weight:700">3. CSS를 기준으로 쪼개는 것도 방법이다.</p>
+
+디자인이나 CSS를 기준으로 컴포넌트를 쪼개는 것도 하나의 방법이다.
+
+이를 위한 방법으로 Atomic Design 방식이 있다.
+
+> Atomic Design은 작은 부품 컴포넌트들의 조립으로 무수히 많은 컴포넌트를 만들 수 있는 방법이다.
+
 ### 2. 정적인 버전 구현하기
 
 컴포넌트 계층 구조를 만든 후 가장 먼저 해야할 일은 상호작용 기능을 제외한 데이터 모델로부터 UI를 렌더링하는 정적인 버전을 구현하는 것이다.
