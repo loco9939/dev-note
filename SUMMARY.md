@@ -15,3 +15,8 @@
   - [JSX](/week_2/JSX.md)
   - [Reconciliation](/week_2/Reconciliation.md)
   - [VDOM](/week_2/VDOM.md)
+- [3주차](/week_3/)
+  - [REST API](/week_3/REST%20API.md)
+  - [JSON](/week_3/JSON.md)
+  - [GraphQL](/week_3/GraphQL.md)
+  - [1급객체](/week_3/1급객체.md)
