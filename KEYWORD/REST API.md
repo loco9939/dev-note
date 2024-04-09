@@ -1,14 +1,22 @@
 # REST API
 
-'로이 필딩'이라는 분께서 만든 프로그램 간 통신을 위한 규약이다.
+## 정의
+
+REST API는 REST 원칙에 의거하여 프로그램간 통신 규약을 작성하는 것을 말한다.
+
+## 역사
+
+REST(REpresentational State Transfer)는 WWW와 같은 분산된 하이퍼미디어 시스템을 위한 소프트웨어 아키텍처의 한 형식으로, '로이 필딩'이라는 교수의 박사학위 논문에서 소개되었다.
+
+**REST API**는 HTTP를 기반으로 클라이언트가 서버의 리소스에 접근하는 방식을 규정한 아키텍처로, REST API는 REST를 기반으로 서비스 API를 구현한 것이다.
+
+## 특징
 
 **REST API**는 우리가 웹 개발에서 통신을 위해서 HTTP 통신을 할 때, HTTP의 장점을 최대한 활용할 수 있는 아키텍처로써 HTTP 프로토콜을 의도에 맞게 디자인하도록 유도한다.
 
-즉, **REST API**는 HTTP를 기반으로 클라이언트가 서버의 리소스에 접근하는 방식을 규정한 아키텍처로, REST API는 REST를 기반으로 서비스 API를 구현한 것이다.
+![REST](/img/REST.png)
 
 > REST란, REpresentational State Transfer의 약어로, 표현된 자원의 상태를 의미한다. 이는 자원의 현재상태일수도, 미래 상태일수도 있다.
-
-![REST](/img/REST.png)
 
 ## REST API 구성
 
@@ -41,3 +49,7 @@ GET /todos/1
 - PATCH: 리소스 전체 교체
 - PUT: 리소스 일부 수정
 - DELETE: 모든/특정 리소스 삭제
+
+## 참조
+
+[RESTAPI - 위키백과](https://ko.wikipedia.org/wiki/REST)
