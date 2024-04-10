@@ -93,3 +93,38 @@ useEffect(() => {
 
 - 컴포넌트 렌더링 이후 Effect가 실행되어 timer가 작동한다.
 - 이후 컴포넌트가 unmount되었을 때, return한 함수(clean up)가 실행되어 Effect를 종료한다.
+
+### 의존성 배열 이용하여 fetching Data 시 주의사항
+
+예를 들어, userId라는 상태값에 따라 데이터를 fetch 요청하는 로직이 Effect에 있다.
+
+처음 userId가 'alice' 였다가 바로 'jane'으로 바꿨을 때, setTodos는 'alice'의 데이터가 아닌 'jane'의 데이터로 설정되어야 한다.
+
+비동기적으로 발생한 로직에서 어떤 데이터가 먼저 순서로 적용될지 알 수 없으므로 이 때, clean up 함수를 사용하여 userId가 바꼈을 때, 이전에 fetching 요청을 무시할 수 있도록 작성할 수 있다.
+
+```ts
+useEffect(() => {
+  let ignore = false;
+
+  async function startFetching() {
+    const json = await fetchTodos(userId);
+    if (!ignore) {
+      setTodos(json);
+    }
+  }
+
+  startFetching();
+
+  return () => {
+    ignore = true;
+  };
+}, [userId]);
+```
+
+> 이 때, fetch 함수의 위치가 useEffect 안에 넣는 것이 좋다. 그 이유는 fetch 함수 내부에서 또 다른 상태값을 참조하게 될 경우도 있는데, 그 때 Effect의 의존성 배열에 해당 상태값을 넣도록 유도함으로써 예상치 못한 동작을 하지 않는 안전한 코드를 작성할 수 있기 때문이다.
+
+## 참조
+
+[useEffect - React Beta](https://react.dev/reference/react/useEffect)
+
+[useEffect 완벽 가이드](https://overreacted.io/a-complete-guide-to-useeffect/)
