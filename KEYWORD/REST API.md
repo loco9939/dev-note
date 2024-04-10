@@ -42,13 +42,51 @@ GET /todos/1
 	- 예측 가능해야하며, 일관성을 유지해야한다.
 	- 띄어쓰기는 '-'를 사용한다.
 
-2. 행위에 대한 정의는 HTTP 요청 메서드를 통해 해야한다.
+2. 행위에 대한 정의(CRUD)는 HTTP 요청 메서드를 통해 해야한다.
 
 - GET: 모든/특정 리소스 취득
 - POST: 리소스 생성
 - PATCH: 리소스 전체 교체
 - PUT: 리소스 일부 수정
 - DELETE: 모든/특정 리소스 삭제
+
+## Thinking In React 예제
+
+기본 리소스 URL: `/products`
+
+1. Read (Collection): `GET/products` → 상품 목록 확인
+2. Read (Item): `GET/products/{id}` → 특정 상품 정보 확인
+3. Create (Collection Pattern 활용): `POST/products` → 상품 추가 (JSON 정보 함께 전달)
+4. Update (Item): `PUT 또는 PATCH/products/{id}` → 특정 상품 정보 변경 (JSON 정보 함께 전달)
+5. Delete (Item): `DELETE/products/{id}` → 특정 상품 삭제
+
+```ts
+// Express 설치 후..
+app.get('/products', (req, res) => {
+  const products = [
+    {
+      category: 'Fruits', price: '$1', stocked: true, name: 'Apple',
+    },
+    {
+      category: 'Fruits', price: '$1', stocked: true, name: 'Dragonfruit',
+    },
+    {
+      category: 'Fruits', price: '$2', stocked: false, name: 'Passionfruit',
+    },
+    {
+      category: 'Vegetables', price: '$2', stocked: true, name: 'Spinach',
+    },
+    {
+      category: 'Vegetables', price: '$4', stocked: false, name: 'Pumpkin',
+    },
+    {
+      category: 'Vegetables', price: '$1', stocked: true, name: 'Peas',
+    },
+  ];
+
+  res.send({ products });
+});
+```
 
 ## 참조
 
