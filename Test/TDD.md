@@ -71,3 +71,5 @@ describe('add 함수', () => {
 [TDD FAQ - 바로가기](https://megaptera.notion.site/TDD-FAQ-edcaa36e8cf246d9a2aa546d99810202)
 
 [Jest를 이용한 간단한 TDD 예제 - 바로가기](https://megaptera.notion.site/Jest-TDD-4149c9f23b2d4402ad44d4d569a3ae13)
+
+[이혜승 - 테알못 신입은 어떻게 테스트를 시작했을까?](https://www.slideshare.net/OKJSP/okkycon-120498066)
