@@ -87,6 +87,12 @@ function App() {
 
 우리가 자주 사용하는 hook을 제공해주는 라이브러리이다.
 
+설치
+
+```bash
+npm install usehooks-ts
+```
+
 ### useBoolean
 
 참, 거짓값을 다룰 때 용이하다.
