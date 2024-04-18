@@ -31,6 +31,7 @@
   - [React-Testing-Library](/Test/React-Testing-Library.md)
   - [MSW](/Test/MSW.md)
   - [Playwright](/Test/Playwright.md)
+  - [CodeceptJS](/Test/CodeceptJS.md)
 
 ## 학습 Keyword
 
