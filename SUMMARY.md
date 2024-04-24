@@ -23,6 +23,9 @@
     - [useEffect](/React/Hook/useEffect.md)
     - [useRef](/React/Hook/useRef.md)
     - [Custom Hook](/React/Hook/Custom%20Hook.md)
+  - [External Store](/React/External%20Store/)
+    - [Flux Architecture](/React/External%20Store/Flux%20Architecture.md)
+    - [Seperation of Concern](/React/External%20Store/Seperation%20of%20Concern.md)
 
 ## Test
 
@@ -41,5 +44,3 @@
 - [GraphQL](/KEYWORD/GraphQL.md)
 - [JSON](/KEYWORD/JSON.md)
 - [REST API](/KEYWORD/REST%20API.md)
-- [Flux Architecture](/KEYWORD/Flux%20Architecture.md)
-- [Seperation of Concern](/KEYWORD/Seperation%20of%20Concern.md)
