@@ -41,3 +41,5 @@
 - [GraphQL](/KEYWORD/GraphQL.md)
 - [JSON](/KEYWORD/JSON.md)
 - [REST API](/KEYWORD/REST%20API.md)
+- [Flux Architecture](/KEYWORD/Flux%20Architecture.md)
+- [Seperation of Concern](/KEYWORD/Seperation%20of%20Concern.md)
