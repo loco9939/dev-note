@@ -24,8 +24,9 @@
     - [useRef](/React/Hook/useRef.md)
     - [Custom Hook](/React/Hook/Custom%20Hook.md)
   - [External Store](/React/External%20Store/)
-    - [Flux Architecture](/React/External%20Store/Flux%20Architecture.md)
     - [Seperation of Concern](/React/External%20Store/Seperation%20of%20Concern.md)
+    - [Flux Architecture](/React/External%20Store/Flux%20Architecture.md)
+    - [TSyringe](/React/External%20Store/TSyringe.md)
 
 ## Test
 
