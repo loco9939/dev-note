@@ -64,6 +64,31 @@ Scenario('Search “CodeceptJS”', ({ I }) => {
 npm run codeceptjs
 ```
 
+### 5주차 과제 - 푸드코트 키오스크 타입 오류
+
+```ts
+// /tests/assignment_test.ts
+Feature('과제 테스트')
+
+Scenario('메뉴판 필터링', ({ I }) => {
+  I.amdOnPage('/')
+  ...
+})
+```
+
+위 코드에서 `I` 형식에 대한 타입을 불러올 수 없다는 문제가 있었다.
+
+### 해겳
+
+```ts
+// step_files.ts
+export = () => actor({
+  ...
+});
+```
+
+- `step_files.ts` 파일을 위와 같이 수정하면 된다.
+
 ## 참조
 
 [CodeceptJS](https://codecept.io/)
