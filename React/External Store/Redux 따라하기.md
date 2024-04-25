@@ -251,3 +251,182 @@ export default function CounterControl() {
   );
 }
 ```
+
+### Action을 메서드로 처리하기
+
+객체 Store를 생성할 때마다 공통적으로 사용되는 부분을 class로 추출했다.
+
+```ts
+// ObjectStore.ts
+
+type Listener = () => void
+
+export default class ObjectStore {
+	private listeners = new Set<Listener>();
+
+	addListener(listener: Listener) {
+		this.listeners.add(listener)
+	}
+
+	removeListener(listener: Listener) {
+		this.listeners.delete(listener)
+	}
+
+	protected publish() {
+		this.listeners.forEach((listener) => listener())
+	}
+}
+```
+
+- listeners는 내부에서만 사용되는 변수로 private 키워드를 사용했다.
+- publish도 클래스 내부에서만 사용되므로 protected 키워드를 사용했다.
+
+```ts
+// CounterStore.ts
+import { singleton } from 'tsyringe';
+
+import ObjectStore from './ObjectStore';
+
+@singleton()
+export default class CounterStore extends ObjectStore {
+	count = 0
+
+/**
+ * count를 step만큼 증가시킵니다. 
+ */
+	increase(step = 1) {
+		this.count += step;
+		this.publish()
+	}
+
+/**
+ * count를 step만큼 감소시킵니다. 
+ */
+	decrease(step = 1) {
+		this.count -= step;
+		this.publish()
+	}
+}
+```
+
+- 위와 같이 사용했을 때의 장점은 store 정의 시 자동완성이 되는 장점이 있다.
+
+```ts
+// useObjectStore.ts
+import { useEffect } from 'react';
+
+import useForceUpdate from './useForceUpdate';
+
+import ObjectStore from '../stores/ObjectStore';
+
+export default function useObjectStore<T extends ObjectStore>(store:T):T {
+	const forceUpdate = useForceUpdate();
+
+	useEffect(() => {
+		store.addListener(forceUpdate);
+
+		return () => {
+			store.removeListener(forceUpdate)
+		};
+	}, [store, forceUpdate])
+
+	return store;
+}
+```
+
+- listener를 등록하는 로직만 수행하는 hook으로 새로 추출했다.
+
+```ts
+// useCounterStore.ts
+import { container } from 'tsyringe';
+
+import useObjectStore from './useObjectStore';
+
+import CounterStore from '../stores/CounterStore';
+
+export default function useCounterStore() {
+  const store = container.resolve(CounterStore);
+
+  return useObjectStore(store);
+}
+```
+
+- `useCounterStore` hook에서는 `useObjectStore`에 store만 넣어주기만 하면된다.
+
+### usestore-ts
+
+usestore-ts란, 리액트 상태관리 라이브러리이다.
+
+#### 사용방법
+
+```ts
+// CounterStore.ts
+import { singleton } from 'tsyringe';
+import { Action, Store } from 'usestore-ts';
+
+@singleton()
+@Store()
+export default class CounterStore {
+	count = 0;
+
+	@Action()
+	increase(step = 1) {
+		this.count += steop
+	}
+
+	@Action()
+	decrease(step = 1) {
+		this.count -= step
+	}
+}
+```
+
+- `@singleton()`과 `@Store`의 순서는 지켜져야한다.
+- `usestore-ts`의 `Decorator`를 사용하면 `@Action`의 경우, `publish`를 자동으로 해주고 `@Store`의 경우, `ObjectStore`에서 해주는 것들을 자동으로 해준다.
+
+**커스텀 훅 작성**
+
+```ts
+// useCounterStore.ts
+import { container } from 'tsyringe';
+
+import { useStore } from 'usestore-ts';
+
+import CounterStore from '../stores/CounterStore';
+
+export default function useCounterStore() {
+	const store = container.resolve(CounterStore);
+	return useStore(store)
+}
+```
+
+#### 비동기 함수 @Action 주의사항 ❗️
+
+```ts
+@singleton()
+@Store()
+class PostStore {
+  posts: Post[] = [];
+
+  // @Action ❌
+  async fetchPosts() {
+    this.startLoading();
+
+    const posts = await fetchPosts();
+
+    this.completeLoading(posts);
+  }
+
+  @Action() ✅
+  startLoading() {
+    this.posts = [];
+  }
+
+  @Action() ✅
+  completeLoading(posts: Post[]) {
+    this.posts = posts;
+  }
+}
+```
+
+- 비동기 함수에 @Action 붙이면 다르게 동작할 수 있으므로 별도의 액션을 만들자.
