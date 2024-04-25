@@ -182,3 +182,72 @@ export default function useDispatch() {
 - 반드시 store를 먼저 선언한 후 dispatch를 참조하여야만 사용이 가능하다.
 
 ex) `const { dispatch } = container.resolve(Store);`로 사용하면 에러 발생 ❗️
+
+### useDispatch, useSelector 사용법
+
+```ts
+// Counter.tsx
+import useSelector from '../hooks/useSelector';
+
+export default function Counter() {
+  const count = useSelector((state) => state.count);
+
+  return (
+    <div>
+      <h1>
+        Counter 컴포넌트
+      </h1>
+      <p>
+        Count:
+        {count}
+      </p>
+    </div>
+  );
+}
+```
+
+```ts
+// CounterControl.tsx
+import useDispatch from '../hooks/useDispatch';
+import useSelector from '../hooks/useSelector';
+import { decrease, increase } from '../stores/Store';
+
+export default function CounterControl() {
+  const dispatch = useDispatch();
+  const count = useSelector((state) => state.count);
+
+  return (
+    <div>
+      <h1>Counter Control 컴포넌트</h1>
+      <p>
+        Count:
+        {count}
+      </p>
+      <button
+        type="button"
+        onClick={() => dispatch(increase())}
+      >
+        Increase
+      </button>
+      <button
+        type="button"
+        onClick={() => dispatch(increase(10))}
+      >
+        Increase 10
+      </button>
+      <button
+        type="button"
+        onClick={() => dispatch(decrease())}
+      >
+        Decrease
+      </button>
+      <button
+        type="button"
+        onClick={() => dispatch(decrease(10))}
+      >
+        Decrease 10
+      </button>
+    </div>
+  );
+}
+```
