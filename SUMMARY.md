@@ -27,6 +27,7 @@
     - [Seperation of Concern](/React/External%20Store/Seperation%20of%20Concern.md)
     - [Flux Architecture](/React/External%20Store/Flux%20Architecture.md)
     - [TSyringe](/React/External%20Store/TSyringe.md)
+    - [Redux 따라하기](/React/External%20Store/Redux%20따라하기.md)
 
 ## Test
 
