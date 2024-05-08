@@ -212,3 +212,5 @@ export default function Switch() {
 - `attr` 뒤에 2번째 type 선언은 `styled-components` 내부에서 `props`를 추론하는데 사용된다.
 
 ## 참조
+
+[styled-component 공식문서](https://styled-components.com/docs/basics#motivation)
