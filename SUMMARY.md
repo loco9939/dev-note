@@ -46,6 +46,7 @@
 
 - [Project](/Project/README.md)
   - [1. 목록보기](/Project/1.%20목록보기.md)
+  - [2. 상품상세보기](/Project/2.%20상품상세보기.md)
 
 ## 학습 Keyword
 
